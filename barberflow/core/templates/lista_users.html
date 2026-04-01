@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Usuários</h1>
+<hr>
+    <a class="btn btn-outline-primary" href="{% url 'cadastro_user' %}">Novo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Login</th>
+                <th scope="col">Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id}}</th>
+                <th>{{user.username}}</th>
+                <th>{{user.email}}</th>
+                <th>
+                    <a class="btn btn-outline-danger" href="{% url 'deletar_user' user.id %}" onclick="return confirm('Tem certeza que deseja deletar este usuário?')">Deletar</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

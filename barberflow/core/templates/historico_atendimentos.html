@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Histórico de Atendimentos</h2>
+    <hr>
+    <form method="GET" class="row g-3 mb-4 bg-light p-3 border rounded">
+        <div class="col-md-4">
+            <label class="form-label">Data Início</label>
+            <input type="date" name="data_inicio" class="form-control" value="{{ request.GET.data_inicio }}">
+        </div>
+        
+        <div class="col-md-4">
+            <label class="form-label">Data Fim</label>
+            <input type="date" name="data_fim" class="form-control" value="{{ request.GET.data_fim }}">
+        </div>
+        
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Filtrar Histórico</button>
+            <a href="{% url 'historico_atendimentos' %}" class="btn btn-outline-secondary ms-2">Limpar</a>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Barbeiro</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atendimento in atendimentos %}
+            <tr>
+                <td>{{ atendimento.cliente_atendimento.nome }}</td>
+                <td>{{ atendimento.barbeiro_atendimento.nome_barbeiro }}</td>
+                <td>{{ atendimento.data_hora|date:"d/m/Y H:i" }}</td>
+                <td><span class="badge bg-secondary">{{ atendimento.get_status_display }}</span></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">Nenhum atendimento encontrado nesse período.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

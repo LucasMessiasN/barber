@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>BarberFlow</title>
+</head>
+<body class="d-flex text-bg-light">
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; min-height: 100vh;">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" href="{% url 'home'%}"><span class="fs-4 fw-bold">BARBER</span></a>
+
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item mb-1">
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_atendimentos' %}">Atendimentos</a>
+        </li>
+        <li class="nav-item mb-1">
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_clientes' %}">Clientes</a>
+        </li>
+        <li class="nav-item mb-1">
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_barbeiros' %}">Barbeiros</a>
+        </li>
+        <li class="nav-item mb-1">
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_users' %}">Usuários</a>
+        </li>
+        <button class="btn btn-outline-light w-100 text-center mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuRelatorios" aria-expanded="false">
+            Relatórios
+        </button>
+
+        <div class="collapse" id="menuRelatorios">
+            <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light text-center py-1" href="{% url 'historico_atendimentos' %}" style="font-size: 0.9em;">
+                        Histórico de Atendimentos
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ul>
+
+    <hr> 
+    <div class="w-100 mb-2">
+        <form action="{% url 'logout' %}" method="post" class="w-100">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger w-100 text-center fw-bold">
+                Sair
+            </button>
+        </form>
+    </div>
+</div>
+
+<main class="flex-grow-1 p-4">
+    {% block content %}
+
+    {% endblock %}
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

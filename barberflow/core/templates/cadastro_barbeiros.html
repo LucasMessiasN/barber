@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Cadastro de Barbeiros</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+        <a href="{% url 'lista_barbeiros' %}" class="btn btn-outline-secondary">Voltar</a>
+    </form>
+{% endblock %}

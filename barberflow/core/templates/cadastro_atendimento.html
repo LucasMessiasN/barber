@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Cadastro de Atendimento</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary" type="submit">Salvar</button>
+    <a class="btn btn-outline-secondary" href="{% url 'lista_atendimentos' %}">Voltar</a>
+</form>
+
+{% endblock %}
