@@ -42,6 +42,15 @@ class Atendimento(models.Model):
     cliente_atendimento = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     barbeiro_atendimento = models.ForeignKey(Barbeiro, on_delete=models.CASCADE)
     data_hora = models.DateTimeField()
+    valor = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+
+    OPCOES_PAGAMENTO = [
+        ('dinheiro', 'Dinheiro'),
+        ('debito', 'Débito'),
+        ('credito', 'Crédito'),
+        ('pix', 'Pix'),
+    ]
+    tipo_pagamento = models.CharField(max_length=100, choices=OPCOES_PAGAMENTO, default='dinheiro', null=True, blank=True)
     
     OPCOES_STATUS = [
         ('aguardando', 'Aguardando'),

@@ -29,4 +29,6 @@ urlpatterns = [
     path('concluir_atendimento/<int:atendimento_id>/', views.concluir_atendimento, name='concluir_atendimento'),
 
     path('historico_atendimentos/', views.historico_atendimentos, name='historico_atendimentos'),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

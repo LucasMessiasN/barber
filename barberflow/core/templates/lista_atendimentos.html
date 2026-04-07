@@ -22,8 +22,42 @@
                 <td>{{ atendimento.cliente_atendimento.nome }}</td>
                 <td>{{ atendimento.barbeiro_atendimento.nome_barbeiro }}</td>
                 <td>{{ atendimento.data_hora }}</td>
-                <td><a class="btn btn-sm btn-success" href="{% url 'concluir_atendimento' atendimento.id %}">Concluir</a></td>
+                <td><a data-bs-toggle="modal" data-bs-target="#modalConcluir{{ atendimento.id }}" class="btn btn-sm btn-success" href="{% url 'concluir_atendimento' atendimento.id %}"><i class="fas fa-check"></i>Concluir</a></td>
             </tr>
+
+            <div class="modal fade" id="modalConcluir{{ atendimento.id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Finalizar Atendimento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <form action="{% url 'concluir_atendimento' atendimento.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Valor Cobrado (R$)</label>
+                        <input type="number" name="valor" step="0.01" class="form-control" required placeholder="0,00">
+                    </div>
+                    
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Forma de Pagamento</label>
+                        <select name="tipo_pagamento" class="form-select">
+                        {% for valor, nome in atendimento.OPCOES_PAGAMENTO %}
+                            <option value="{{ valor }}">{{ nome }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Confirmar e Concluir</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
             {% endfor %}
         </tbody>
     </table>

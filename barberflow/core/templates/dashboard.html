@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <hr>
+    <h2>Resumo</h2>
+    
+    {% if total_clientes is not None %}
+    <p>Total de Clientes: {{ total_clientes }}</p>
+    {% endif %}
+
+    {% if total_barbeiros is not None %}
+    <p>Total de Barbeiros: {{ total_barbeiros }}</p>
+    {% endif %}
+
+    {% if total_atendimentos_concluidos is not None %}
+    <p>Total de Atendimentos Concluídos: {{ total_atendimentos_concluidos }}</p>
+    {% endif %}
+
+    {% if faturamento_total is not None %}
+    <p>Faturamento Total: R$ {{ faturamento_total|floatformat:2 }}</p>
+    {% endif %}
+{% endblock %}

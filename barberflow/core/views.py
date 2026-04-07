@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
@@ -141,8 +142,13 @@ def lista_atendimentos(request):
 @login_required
 def concluir_atendimento(request, atendimento_id):
     atendimento = get_object_or_404(Atendimento, id=atendimento_id)
-    atendimento.status = 'concluido'
-    atendimento.save()
+    if request.method == 'POST':
+        valor_informado = request.POST.get('valor')
+        forma_pagamento = request.POST.get('forma_pagamento')
+        atendimento.valor = valor_informado
+        atendimento.tipo_pagamento = forma_pagamento
+        atendimento.status = 'concluido'
+        atendimento.save()
     return redirect('lista_atendimentos')
 
 @login_required
@@ -158,3 +164,15 @@ def historico_atendimentos(request):
         historico = historico.filter(data_hora__date__lte=data_fim)
 
     return render(request, 'historico_atendimentos.html', {'historico': historico})
+
+@login_required
+def dashboard(request):
+    total_clientes = Cliente.objects.count()
+    total_barbeiros = Barbeiro.objects.count()
+    total_atendimentos_concluidos = Atendimento.objects.filter(status='concluido').count()
+    return render(request, 'dashboard.html', {
+        'total_clientes': total_clientes,
+        'total_barbeiros': total_barbeiros,
+        'total_atendimentos_concluidos': total_atendimentos_concluidos,
+        'faturamento_total': Atendimento.objects.filter(status='concluido').aggregate(Sum('valor'))['valor__sum'] or 0
+    })
