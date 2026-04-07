@@ -16,38 +16,37 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item mb-1">
             {% if perms.core.view_atendimento %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_atendimentos' %}">Atendimentos</a>
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_atendimentos' %}"><i class="fa-solid fa-desktop"></i> Atendimentos</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.core.view_cliente %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_clientes' %}">Clientes</a>
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_clientes' %}"><i class="fa-solid fa-users"></i> Clientes</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.core.view_barbeiro %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_barbeiros' %}">Barbeiros</a>
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_barbeiros' %}"><i class="fa-regular fa-circle-user"></i> Barbeiros</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.auth.view_user %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_users' %}">Usuários</a>
+            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_users' %}"><i class="fa-solid fa-circle-user"></i> Usuários</a>
             {% endif %}
         </li>
         <button class="btn btn-outline-light w-100 text-center mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuRelatorios" aria-expanded="false">
-            Relatórios
+            <i class="fa-solid fa-chart-area"></i> Relatórios
         </button>
 
         <div class="collapse" id="menuRelatorios">
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-light text-center py-1" href="{% url 'historico_atendimentos' %}" style="font-size: 0.9em;">
-                        Histórico de Atendimentos
+                        <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Atendimentos
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-outline-light text-center py-1" href="{% url 'dashboard' %}" style="font-size: 0.9em;">
-                        Dashboard
+                    <a class="nav-link btn btn-outline-light text-center py-1" href="{% url 'dashboard' %}" style="font-size: 0.9em;"><i class="fa-solid fa-chart-area"></i> Dashboard
                     </a>
                 </li>
             </ul>
