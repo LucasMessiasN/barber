@@ -31,6 +31,7 @@
         <li class="nav-item mb-1">
             {% if perms.auth.view_user %}
             <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_users' %}">Usuários</a>
+            {% endif %}
         </li>
         <button class="btn btn-outline-light w-100 text-center mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuRelatorios" aria-expanded="false">
             Relatórios

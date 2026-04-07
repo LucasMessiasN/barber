@@ -53,7 +53,7 @@ def cadastro_cliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_clientes.html')
+            return redirect('lista_clientes')
     else:
         form = ClienteForm()
     return render(request, 'cadastro_cliente.html', {'form': form})
@@ -63,6 +63,16 @@ def cadastro_cliente(request):
 def lista_clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'lista_clientes.html', {'clientes': clientes})
+
+@login_required
+@permission_required('core.view_cliente', raise_exception=True)
+def visualizar_cliente(request, cliente_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    form = ClienteForm(instance=cliente)
+
+    for field in form.fields.values():
+        field.widget.attrs['disabled'] = True
+    return render(request, 'visualizar_cliente.html', {'form': form, 'cliente': cliente})
 
 @login_required
 @permission_required('core.change_cliente', raise_exception=True)
