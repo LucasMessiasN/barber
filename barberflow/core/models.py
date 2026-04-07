@@ -7,8 +7,19 @@ class Cliente(models.Model):
     email = models.EmailField(max_length=100, null=True, blank=True)
     telefone = models.CharField(max_length=20, null=False, blank=False)
 
+    cep = models.CharField(max_length=9)
+    rua = models.CharField(max_length=200)
+    numero = models.CharField(max_length=10)
+    
+    #não obrigatorio
+    complemento = models.CharField(max_length=100, blank=True, null=True)
+    
+    bairro = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=100)
+    estado = models.CharField(max_length=2)
+
     def __str__(self):
-        return self.nome
+        return f"{self.nome} - {self.cidade}/{self.estado}"
     
 class Barbeiro(models.Model):
     nome_barbeiro = models.CharField(max_length=100, null=False, blank=False)

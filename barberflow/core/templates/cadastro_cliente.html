@@ -1,12 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load crispy_forms_tags %}
 <h1>Cadastro de Clientes</h1>
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button class="btn btn-outline-primary" type="submit">Salvar</button>
     <a class="btn btn-outline-secondary" href="{% url 'lista_clientes' %}">Voltar</a>
 </form>
+
+<script>
+    const inputCep = document.getElementById('id_cep');
+
+    inputCep.addEventListener('blur', function() {
+        let cepDigitado = inputCep.value;
+
+        if (cepDigitado !== "") {
+            fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`)
+                .then(resposta => resposta.json())
+                .then(dados => {
+                    if (!dados.erro) {
+                        document.getElementById('id_rua').value = dados.logradouro;
+                        document.getElementById('id_bairro').value = dados.bairro;
+                        document.getElementById('id_cidade').value = dados.localidade;
+                        document.getElementById('id_estado').value = dados.uf;
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                })
+                .catch(erro => console.log("Erro:", erro));
+        }
+    });
+</script>
 
 {% endblock %}

@@ -16,7 +16,7 @@ class CadastroFuncionarioForm(UserCreationForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ['nome', 'email', 'telefone']
+        fields = ['nome', 'email', 'telefone', 'cep', 'rua', 'numero', 'complemento', 'bairro', 'cidade', 'estado']
 
 class BarbeiroForm(forms.ModelForm):
     class Meta:
