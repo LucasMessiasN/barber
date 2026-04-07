@@ -16,26 +16,28 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item mb-1">
             {% if perms.core.view_atendimento %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_atendimentos' %}"><i class="fa-solid fa-desktop"></i> Atendimentos</a>
+            <a class="nav-link active, btn btn-outline-light d-flex align-items-center" aria-current="page" href="{% url 'lista_atendimentos' %}"><i class="fa-solid fa-desktop"></i> Atendimentos</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.core.view_cliente %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_clientes' %}"><i class="fa-solid fa-users"></i> Clientes</a>
+            <a class="nav-link active, btn btn-outline-light d-flex align-items-center" aria-current="page" href="{% url 'lista_clientes' %}"><i class="fa-solid fa-users"></i> Clientes</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.core.view_barbeiro %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_barbeiros' %}"><i class="fa-regular fa-circle-user"></i> Barbeiros</a>
+            <a class="nav-link active, btn btn-outline-light d-flex align-items-center" aria-current="page" href="{% url 'lista_barbeiros' %}"><i class="fa-regular fa-circle-user"></i> Barbeiros</a>
             {% endif %}
         </li>
         <li class="nav-item mb-1">
             {% if perms.auth.view_user %}
-            <a class="nav-link active, btn btn-outline-light" aria-current="page" href="{% url 'lista_users' %}"><i class="fa-solid fa-circle-user"></i> Usuários</a>
+            <a class="nav-link active, btn btn-outline-light d-flex align-items-center" aria-current="page" href="{% url 'lista_users' %}"><i class="fa-solid fa-circle-user"></i> Usuários</a>
             {% endif %}
         </li>
-        <button class="btn btn-outline-light w-100 text-center mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuRelatorios" aria-expanded="false">
-            <i class="fa-solid fa-chart-area"></i> Relatórios
+        <button class="nav-link btn btn-outline-light border-0 text-primary w-100 d-flex justify-content-start align-items-center" data-bs-toggle="collapse" data-bs-target="#menuRelatorios">
+            <i class="fa-solid fa-file-lines me-2"></i>
+            <span> Relatórios</span>
+            <i class="fa-solid fa-circle-plus ms-auto"></i>
         </button>
 
         <div class="collapse" id="menuRelatorios">
