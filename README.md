@@ -1,7 +1,9 @@
 💈 **BarberFlow**
+
 ![Django](https://img.shields.io/badge/Django-6.0.2-092e20?style=for-the-badge&logo=django&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.12-3776ab?style=for-the-badge&logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green?style=for-the-badge)
+
 Sistema de Gerenciamento para Barbearias > Desenvolvido para ter controle de clientes e análise por dashboard e historicos.
 
 O BarberFlow é uma aplicação web construída com Django, focada em oferecer uma experiência de usuário e um controle administrativo. 
